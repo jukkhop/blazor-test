@@ -1,0 +1,61 @@
+@page "/tasks"
+
+@functions {
+
+    const int taskCount = 10;
+    
+    long[] Results = new long[taskCount];
+    Task[] TaskList = new Task[taskCount];
+
+    Random random = new Random();
+
+    async Task startTasks() {
+
+      for (int i = 0; i < taskCount; i++) {
+        Results[i] = 1;
+      }
+
+      for (int j = 0; j < taskCount; j++) {
+        int number = j;
+
+        TaskList[number] = Task.Run(async () => {
+
+          for (int f = 0; f < 10000; f++) {
+            int rnd1 = random.Next(1, 10000);
+            int rnd2 = random.Next(1, 10000);
+
+            Results[number] = (long) Convert.ToDouble(rnd1 * rnd2);
+
+            this.StateHasChanged();
+            await Task.Delay(random.Next(1, 200));
+          }
+        });
+      }
+
+      await Task.WhenAll(TaskList);
+    }
+}
+
+<div class="main">
+  <div class="content">
+    <h1>Want to crunch some numbers?</h1>
+    <h5></h5>
+    <button onclick="@startTasks">Let's go!</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var result in Results)
+        {
+          <tr>
+            <td>@result</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -1,0 +1,41 @@
+﻿html,
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 4.25rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+label {
+  min-width: 60px;
+}
+
+table {
+  margin-top: 2rem;
+}
+
+.main {
+  display: flex;
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 990px;
+}
+
+.content {
+  margin: auto;
+}
+
+.form {
+  margin-top: 2rem;
+}
+
+@media (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) {
+}
